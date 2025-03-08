@@ -177,9 +177,9 @@
 <body>
     <!-- Menu lateral -->
     <div id="mySidebar" class="sidebar">
-        <a href="alunos.html">Alunos</a>
-        <a href="empresas.html">Empresas</a>
-        <a href="relatorios.html">Relatórios</a>
+        <a href="../views/paginaAlunos.php">Alunos</a>
+        <a href="../views/paginaEmp.php">Empresas</a>
+        <a href="../views/paginaRelatorios.php">Relatórios</a>
     </div>
 
     <!-- Conteúdo principal -->

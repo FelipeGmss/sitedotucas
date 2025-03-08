@@ -1,7 +1,7 @@
 <?php 
 
 require('../models/cadastroEmp.class.php');
-
+try {
 if(isset($_POST['btn'])){
      $nome = $_POST['nome'];
      $email = $_POST['email'];
@@ -9,23 +9,14 @@ if(isset($_POST['btn'])){
      $perfil = $_POST['perfil'];
      $contato = $_POST['contato'];
 
-    try{
-    $conexao = $pdo->prepare("INSERT INTO usuarios (nome, email, localizacao, perfil, contato) 
-    VALUES (:nome, :email, :localizacao, :perfil, :contato)");
-    $conexao->bindParam(":nome",$nome);
-    $conexao->bindParam(":email",$email);
-    $conexao->bindParam(":localizacao",$localizacao);
-    $conexao->bindParam(":perfil",$perfil);
-    $conexao->bindParam(":contato",$contato);
-    $conexao->execute();
-        header("Location:../views/PaginaInicialProf.php");
-    }
-    catch(PDOException $th){
-        header("Location:../views/CadatroEmpresas.php");
-    }
+    $x = new CadastroEmp();
+    $x->CadastrarEmp($nome, $email, $localizacao, $perfil, $contato);
 
 }
-
+    header("Location:../views/paginaEmp.php");
+} catch(Exception $th){
+    echo "deu ruim". $th->getMessage();
+}
     
 
 ?>
