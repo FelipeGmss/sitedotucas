@@ -18,7 +18,7 @@ if(isset($_POST['btn'])){
     $conexao->bindParam(":perfil",$perfil);
     $conexao->bindParam(":contato",$contato);
     $conexao->execute();
-    header("Location:../views/PaginaInicialProf.php");
+        header("Location:../views/PaginaInicialProf.php");
     }
     catch(PDOException $th){
         header("Location:../views/CadatroEmpresas.php");
