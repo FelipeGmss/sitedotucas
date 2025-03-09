@@ -6,10 +6,10 @@ if (isset($_POST['btn'])) {
 
 switch ($opc) {
     case 'Aluno':
-        header("Location:../views/PaginaInicialAluno.php");
+        header("Location:../views/loginAluno.php");
         break;
     case 'Professor':
-        header("Location:../views/PaginaInicialProf.php");
+        header("Location:../views/loginProf.php");
         break;
     default:
         break;

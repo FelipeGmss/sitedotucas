@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Estágio - Sobre</title>
+    <title>Sistema de Estágio - Dashboard</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Estilo personalizado -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
     <style>
     :root {
         --primary-color: #2E7D32;
@@ -22,7 +24,6 @@
         font-family: 'Segoe UI', sans-serif;
     }
 
-    /* Sidebar melhorada */
     .sidebar {
         height: 100%;
         width: 0;
@@ -54,186 +55,231 @@
         transform: translateX(10px);
     }
 
-    /* Header melhorado */
-    /* Adicione ou modifique estas classes no seu CSS */
-.header {
-    background-color: var(--white);
-    padding: 15px 25px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 900;
-    display: flex;
-    justify-content: space-between; /* Isso separa os elementos à esquerda e direita */
-    align-items: center;
-}
-
-.auth-buttons {
-    position: fixed; /* Fixa os botões */
-    top: 15px; /* Distância do topo */
-    right: 25px; /* Distância da direita */
-    z-index: 1001; /* Garante que fique acima de outros elementos */
-}
-
-    /* Botões estilizados */
-    .btn-outline-dark {
-        border-color: var(--primary-color);
-        color: var(--primary-color);
-        transition: var(--transition);
-    }
-
-    .btn-outline-dark:hover {
-        background-color: var(--primary-color);
-        color: var(--white);
-        transform: scale(1.05);
-    }
-
-    .btn-outline-primary,
-    .btn-outline-success {
-        transition: var(--transition);
-    }
-
-    .btn-outline-primary:hover,
-    .btn-outline-success:hover {
-        transform: scale(1.05);
-    }
-
-    /* Cards de informação melhorados */
-    .info-box {
+    .header {
         background-color: var(--white);
-        padding: 25px;
-        border-radius: 15px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        height: 300px;
+        padding: 15px 25px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        position: sticky;
+        top: 0;
+        z-index: 900;
         display: flex;
-        flex-direction: column;
         justify-content: space-between;
-        transition: var(--transition);
-        position: relative;
-        overflow: hidden;
+        align-items: center;
     }
 
-    .info-box:hover {
+    /* Novos estilos para os cards de ação rápida */
+    .quick-action-card {
+        background: var(--white);
+        border-radius: 15px;
+        padding: 25px;
+        text-align: center;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+
+    .quick-action-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 6px 20px rgba(0,0,0,0.15);
     }
 
-    .info-box::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background-color: var(--primary-color);
-        transform: scaleX(0);
-        transition: var(--transition);
-    }
-
-    .info-box:hover::before {
-        transform: scaleX(1);
-    }
-
-    .info-box h3 {
-        font-size: 1.3rem;
+    .card-icon {
+        font-size: 2.5rem;
         color: var(--primary-color);
         margin-bottom: 15px;
-        position: relative;
-        padding-bottom: 10px;
     }
 
-    .info-box h3::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 50px;
-        height: 2px;
-        background-color: var(--secondary-color);
+    .number {
+        font-size: 2rem;
+        font-weight: bold;
+        color: var(--primary-color);
+        margin: 10px 0;
     }
 
-    /* Animação de entrada */
-    .fade-in {
-        opacity: 0;
-        transform: translateY(20px);
+    .action-link {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
         transition: var(--transition);
     }
 
-    .fade-in.active {
-        opacity: 1;
-        transform: translateY(0);
+    .action-link:hover {
+        color: var(--hover-color);
+    }
+
+    /* Estilos para painéis de atividade e tarefas */
+    .activity-panel, .tasks-panel {
+        background: var(--white);
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        height: 100%;
+        margin-bottom: 20px;
+    }
+
+    .activity-item, .task-item {
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .activity-date {
+        color: var(--primary-color);
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .task-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* Estilos para alertas */
+    .alerts-panel {
+        background: var(--white);
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        margin-top: 20px;
+    }
+
+    .alert {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .alert i {
+        font-size: 1.2rem;
     }
 
     /* Responsividade */
     @media (max-width: 768px) {
-        .info-box {
-            height: auto;
-            min-height: 250px;
+        .quick-action-card {
+            margin-bottom: 20px;
         }
     }
-</style>
-
+    </style>
 </head>
 <body>
     <!-- Menu lateral -->
     <div id="mySidebar" class="sidebar">
-        <a href="../views/paginaAlunos.php">Alunos</a>
-        <a href="../views/paginaEmp.php">Empresas</a>
-        <a href="../views/paginaRelatorios.php">Relatórios</a>
+        <a href="../views/paginaAlunos.php"><i class="fas fa-user-graduate"></i> Alunos</a>
+        <a href="../views/paginaEmp.php"><i class="fas fa-building"></i> Empresas</a>
+        <a href="../views/paginaRelatorios.php"><i class="fas fa-file-alt"></i> Relatórios</a>
     </div>
 
     <!-- Conteúdo principal -->
     <div id="main" class="content">
         <!-- Cabeçalho -->
-        <!-- Cabeçalho -->
-<div class="header">
-    <div class="d-flex align-items-center">
-        <button class="btn btn-outline-dark me-3" onclick="toggleNav()">☰</button>
-        <h1 class="h4 mb-0">Sistema de estágio</h1>
-    </div>
-</div>
+        <div class="header">
+            <div class="d-flex align-items-center">
+                <button class="btn btn-outline-dark me-3" onclick="toggleNav()">☰</button>
+                <h1 class="h4 mb-0">Dashboard de Monitoramento</h1>
+            </div>
+        </div>
 
-<!-- Botões de autenticação -->
-<div class="auth-buttons">
-    <a href="../views/login.php" class="btn btn-outline-primary me-2">login</a>
-    <a href="../views/CadatroEmpresas.php" class="btn btn-outline-success">cadastrar Empresas</a>
-</div>
-
-        <!-- Seção de Informações -->
+        <!-- Conteúdo Principal -->
         <div class="container mt-5">
-            <div class="row g-4">
-                <!-- Como fomos criados e por quem -->
-                <div class="col-md-4">
-                    <div class="info-box">
-                        <div>
-                            <h3>Como fomos criados e por quem</h3>
-                            <p>
-                                O Sistema de Estágio foi criado em 2023 por um grupo de estudantes de tecnologia da Universidade Federal, com o apoio de professores e empresas parceiras. A ideia surgiu da necessidade de organizar e facilitar o processo de estágio para alunos e empresas.
-                            </p>
+            <!-- Cards de Ações Rápidas -->
+            <div class="row mb-5">
+                <div class="col-md-3">
+                    <div class="quick-action-card">
+                        <div class="card-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h4>Alunos Ativos</h4>
+                        <p class="number">45</p>
+                        <a href="../views/paginaAlunos.php" class="action-link">Ver Detalhes</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="quick-action-card">
+                        <div class="card-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h4>Empresas Parceiras</h4>
+                        <p class="number">28</p>
+                        <a href="../views/paginaEmp.php" class="action-link">Gerenciar</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="quick-action-card">
+                        <div class="card-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h4>Relatórios Pendentes</h4>
+                        <p class="number">12</p>
+                        <a href="../views/paginaRelatorios.php" class="action-link">Avaliar</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="quick-action-card">
+                        <div class="card-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>Horas Registradas</h4>
+                        <p class="number">1.280</p>
+                        <a href="../views/paginaRelatorios.php" class="action-link">Verificar</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção de Atividades Recentes -->
+            <div class="row mb-5">
+                <div class="col-md-8">
+                    <div class="activity-panel">
+                        <h3>Atividades Recentes</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <span class="activity-date">Hoje, 14:30</span>
+                                <p>João Silva enviou novo relatório mensal</p>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-date">Ontem, 16:45</span>
+                                <p>Nova empresa cadastrada: Tech Solutions</p>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-date">22/03, 09:15</span>
+                                <p>Maria Santos completou 100 horas de estágio</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- O que fazemos -->
                 <div class="col-md-4">
-                    <div class="info-box">
-                        <div>
-                            <h3>O que fazemos</h3>
-                            <p>
-                                Conectamos estudantes a empresas, gerenciamos o processo de estágio e geramos relatórios detalhados. Nossa plataforma permite o cadastro de alunos e empresas, facilita a comunicação entre as partes e fornece ferramentas para acompanhamento e avaliação de desempenho.
-                            </p>
+                    <div class="tasks-panel">
+                        <h3>Tarefas Pendentes</h3>
+                        <div class="task-list">
+                            <div class="task-item">
+                                <input type="checkbox" id="task1">
+                                <label for="task1">Avaliar 3 relatórios</label>
+                            </div>
+                            <div class="task-item">
+                                <input type="checkbox" id="task2">
+                                <label for="task2">Aprovar novo convênio</label>
+                            </div>
+                            <div class="task-item">
+                                <input type="checkbox" id="task3">
+                                <label for="task3">Reunião com supervisor</label>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Objetivo -->
-                <div class="col-md-4">
-                    <div class="info-box">
-                        <div>
-                            <h3>Objetivo</h3>
-                            <p>
-                                Nosso objetivo é simplificar a gestão de estágios, promovendo o desenvolvimento profissional dos alunos e ajudando empresas a encontrar novos talentos. Queremos ser a ponte que transforma oportunidades em experiências de sucesso para todos os envolvidos.
-                            </p>
+            <!-- Seção de Alertas -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="alerts-panel">
+                        <h3>Alertas Importantes</h3>
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            5 alunos próximos do prazo final de estágio
+                        </div>
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i>
+                            Nova documentação disponível para download
                         </div>
                     </div>
                 </div>
@@ -244,7 +290,6 @@
     <!-- Bootstrap JS e script personalizado -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-    // Script existente do toggle
     function toggleNav() {
         const sidebar = document.getElementById("mySidebar");
         const main = document.getElementById("main");
@@ -257,50 +302,6 @@
         }
     }
 
-    // Novos scripts para interatividade
-    document.addEventListener('DOMContentLoaded', function() {
-        // Adiciona classe fade-in aos info-boxes
-        const infoBoxes = document.querySelectorAll('.info-box');
-        infoBoxes.forEach((box, index) => {
-            box.classList.add('fade-in');
-            // Atrasa a animação para cada card
-            setTimeout(() => {
-                box.classList.add('active');
-            }, 200 * (index + 1));
-        });
-
-        // Animação ao scroll
-        function checkScroll() {
-            const elements = document.querySelectorAll('.fade-in:not(.active)');
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                if (elementTop < window.innerHeight - 100) {
-                    element.classList.add('active');
-                }
-            });
-        }
-
-        // Listener para scroll
-        window.addEventListener('scroll', checkScroll);
-
-        // Efeito hover nos cards
-        infoBoxes.forEach(box => {
-            box.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-
-            box.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Adiciona tooltip aos botões
-        const buttons = document.querySelectorAll('.btn');
-        buttons.forEach(button => {
-            button.setAttribute('title', button.textContent.trim());
-        });
-    });
-
     // Fecha sidebar ao clicar fora
     document.addEventListener('click', function(event) {
         const sidebar = document.getElementById('mySidebar');
@@ -312,6 +313,6 @@
             toggleNav();
         }
     });
-</script>
+    </script>
 </body>
 </html>

@@ -152,7 +152,7 @@
             <!-- Botão de voltar -->
             <a href="../index.php" class="btn-voltar">← Voltar</a>
             <h2>Login</h2>
-            <form action="../controller/ControllerLoginAluno.php" method="POST">
+            <form action="../controller/ControllerLoginProf.php" method="POST">
                 <div class="mb-3">
                     <label for="email" class="form-label">E-mail</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Digite o e-mail" required>
